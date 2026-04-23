@@ -17,7 +17,7 @@
 <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:15px;"></pre>
 
 <script>
-    const API_BASE = "http://localhost:5005/api/v1/payments"; // ⚠️ change port if needed
+    const API_BASE = "https://razorpay-tfoe.onrender.com/api/v1/payments"; // ⚠️ change port if needed
 
     function log(msg) {
         document.getElementById("log").innerText += msg + "\\n";
@@ -32,7 +32,7 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                appointmentId: 2,
+                appointmentId: 5,
                 patientId: "11111111-1111-1111-1111-111111111111",
                 providerId: "22222222-2222-2222-2222-222222222222",
                 amount: 500,
