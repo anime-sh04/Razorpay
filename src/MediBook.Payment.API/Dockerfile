@@ -4,10 +4,14 @@ EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
+
 COPY ["src/MediBook.Payment.API/MediBook.Payment.API.csproj", "src/MediBook.Payment.API/"]
 RUN dotnet restore "src/MediBook.Payment.API/MediBook.Payment.API.csproj"
+
 COPY . .
-WORKDIR "/src/src/MediBook.Payment.API"
+
+WORKDIR "/src/MediBook.Payment.API"   # ✅ FIXED (removed extra src)
+
 RUN dotnet build "MediBook.Payment.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
