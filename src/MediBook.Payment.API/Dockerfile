@@ -8,7 +8,7 @@ WORKDIR /src
 
 COPY . .
 
-WORKDIR /src/MediBook.Payment.API
+WORKDIR /src/src/MediBook.Payment.API   # ✅ FIXED
 RUN dotnet restore
 RUN dotnet build -c Release -o /app/build
 
