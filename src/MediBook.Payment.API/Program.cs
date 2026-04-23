@@ -8,13 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // ✅ ADD CORS BEFORE BUILD
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
+    options.AddPolicy("AllowAll",
         policy => policy
-            .WithOrigins("http://127.0.0.1:5500", "http://localhost:5500")
+            .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
-
 builder.Services.AddPaymentServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
@@ -24,7 +23,7 @@ var app = builder.Build();
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // ✅ 2. CORS MUST BE EARLY
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAll");
 
 // ✅ 3. Swagger
 app.UseSwagger();
